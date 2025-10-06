@@ -10,6 +10,7 @@ struct Vec2Int {
 
 struct Cursor {
 	Vector2 pos_;
+	Vector2 GetPos() { return pos_; }
 	void Update() {
 		Input* input_ = Input::GetInstance();
 		pos_ = input_->GetInstance()->GetMousePosition();
