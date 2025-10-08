@@ -14,17 +14,32 @@ void TitleScene::Initialize() {
 	    {640.0f, 360.0f},
         {1.0f, 1.0f, 1.0f, 1.0f}
     };
-
 	startBoxSprite = Sprite::Create(startBoxGH, startBox.pos, startBox.color, {0.5f, 0.5f}, 0, 0);
+
+	endBoxGH = TextureManager::Load("./Resources/startBox.png");
+	endBox = {
+	    {640.0f, 520.0f},
+        {1.0f, 1.0f, 1.0f, 1.0f}
+    };
+	endBoxSprite = Sprite::Create(endBoxGH, endBox.pos, endBox.color, {0.5f, 0.5f}, 0, 0);
 }
 
 void TitleScene::Update() {
 	Vector2 BoxPos = startBoxSprite->GetPosition();
+	Vector2 endBoxPos = endBoxSprite->GetPosition();
 
 	if (cursor.GetPos().x >= BoxPos.x - 160.0f && cursor.GetPos().x <= BoxPos.x + 160.0f) {
 		if (cursor.GetPos().y >= BoxPos.y - 40.0f && cursor.GetPos().y <= BoxPos.y + 40.0f) {
 			if (cursor.TriggerLeft()) {
 				isFinished_ = true;
+			}
+		}
+	}
+
+	if (cursor.GetPos().x >= endBoxPos.x - 160.0f && cursor.GetPos().x <= endBoxPos.x + 160.0f) {
+		if (cursor.GetPos().y >= endBoxPos.y - 40.0f && cursor.GetPos().y <= endBoxPos.y + 40.0f) {
+			if (cursor.TriggerLeft()) {
+				isEscaped_ = true;
 			}
 		}
 	}
@@ -47,6 +62,8 @@ void TitleScene::Draw() {
 	Sprite::PreDraw();
 
 	startBoxSprite->Draw();
+
+	endBoxSprite->Draw();
 
 	Sprite::PostDraw();
 

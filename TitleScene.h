@@ -25,16 +25,23 @@ public:
 	// シーン終了フラグ
 	bool IsFinished() { return isFinished_; }
 
+	bool IsEscaped() { return isEscaped_; }
+
 private:
 	DirectXCommon* dxc_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
 
 	bool isFinished_ = false;
+	bool isEscaped_ = false;
 
 	uint32_t startBoxGH = 0u;
 	Sprite* startBoxSprite = nullptr;
 	Box startBox = {{}, {}};
+
+	uint32_t endBoxGH = 0u;
+	Sprite* endBoxSprite = nullptr;
+	Box endBox = {{}, {}};
 
 	Cursor cursor;
 };

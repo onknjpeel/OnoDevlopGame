@@ -66,6 +66,9 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		dxCommon->PostDraw();
 
 		if (scene == kTitle) {
+			if (titleScene->IsEscaped()) {
+				break;
+			}
 			if (Input::GetInstance()->TriggerKey(DIK_ESCAPE)) {
 				break;
 			}
