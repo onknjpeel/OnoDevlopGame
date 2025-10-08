@@ -4,6 +4,11 @@
 
 using namespace KamataEngine;
 
+struct Box {
+	Vector2 pos;
+	Vector4 color;
+};
+
 class TitleScene {
 public:
 	~TitleScene();
@@ -26,6 +31,10 @@ private:
 	Audio* audio_ = nullptr;
 
 	bool isFinished_ = false;
+
+	uint32_t startBoxGH = 0u;
+	Sprite* startBoxSprite = nullptr;
+	Box startBox = {{}, {}};
 
 	Cursor cursor;
 };
