@@ -1,5 +1,6 @@
 #pragma once
 #include "Cursor.h"
+#include "Enemy.h"
 #include "KamataEngine.h"
 
 using namespace KamataEngine;
@@ -29,5 +30,18 @@ private:
 
 	Cursor cursor;
 
-	int weaponNumber = 0;
+	int bulletNumber = 0;
+	const int maxBulletNum = 6;
+
+	Camera camera_;
+
+	Model* enemyModel = nullptr;
+	Enemy* enemy_ = nullptr;
+
+	uint32_t cursorGH = TextureManager::Load("./Resources/scope.png");
+
+	uint32_t bulletGH = TextureManager::Load("./Resources/bullet.png");
+	Sprite* bulletSprite[6];
+	Vector2 bulletPos[6];
+	bool isShoot[6];
 };

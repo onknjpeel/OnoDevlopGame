@@ -30,8 +30,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	// エンジンの初期化
 	KamataEngine::Initialize(L"LE3C_07_オノ_ケンジピエール");
 
-	// WinApp* win = WinApp::GetInstance();
-	// win->SetFullscreen(true);
+	ShowCursor(0);
 
 	// DirectXCommonのインスタンスの取得
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
