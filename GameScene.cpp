@@ -109,4 +109,5 @@ void GameScene::Draw() {
 	imgui_->Draw();
 
 	cursor.IMGUI_POS();
+	enemy_->IMGUI();
 }

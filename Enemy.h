@@ -19,6 +19,8 @@ public:
 
 	Vector2 GetSize() { return size_; }
 
+	void IMGUI();
+
 private:
 	DirectXCommon* dxc_ = nullptr;
 	Input* input_ = nullptr;
@@ -27,6 +29,8 @@ private:
 	WorldTransform worldTransform_;
 
 	Model* model_ = nullptr;
+
+	Vector3 pos_;
 
 	ObjectColor objectColor_;
 	Vector4 color;

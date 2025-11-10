@@ -16,7 +16,7 @@ void TitleScene::Initialize() {
     };
 	startBoxSprite = Sprite::Create(startBoxGH, startBox.pos, startBox.color, {0.5f, 0.5f}, 0, 0);
 
-	endBoxGH = TextureManager::Load("./Resources/startBox.png");
+	endBoxGH = TextureManager::Load("./Resources/endBox.png");
 	endBox = {
 	    {640.0f, 520.0f},
         {1.0f, 1.0f, 1.0f, 1.0f}
