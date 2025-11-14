@@ -25,7 +25,7 @@ void Enemy::Update() {
 	}
 	objectColor_.SetColor(color);
 	pos_ = worldTransform_.translation_;
-	worldTransform_.TransferMatrix();
+	worldTransform_.UpdateMatrix();
 }
 
 void Enemy::Draw(Camera& camera) { model_->Draw(worldTransform_, camera, &objectColor_); }
