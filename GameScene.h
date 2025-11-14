@@ -44,4 +44,6 @@ private:
 	Sprite* bulletSprite[6];
 	Vector2 bulletPos[6];
 	bool isShoot[6];
+
+	int life_ = 0;
 };
