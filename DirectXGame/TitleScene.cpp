@@ -23,6 +23,11 @@ void TitleScene::Initialize() {
     };
 	endBoxSprite = Sprite::Create(endBoxGH, endBox.pos, endBox.color, {0.5f, 0.5f}, 0, 0);
 
+	hit = new Hit();
+
+	isHit = false;
+	isHitE = false;
+
 	cursor.SetResource(cursorGH, {0.0f, 0.0f});
 }
 
@@ -30,11 +35,19 @@ void TitleScene::Update() {
 	Vector2 BoxPos = startBoxSprite->GetPosition();
 	Vector2 endBoxPos = endBoxSprite->GetPosition();
 
+	if (!isHit && !isHitE) {
+		if (cursor.TriggerLeft()) {
+			hit->Initialize(cursor.GetPos());
+		}
+	}
+
 	if (cursor.GetPos().x >= BoxPos.x - 160.0f && cursor.GetPos().x <= BoxPos.x + 160.0f) {
 		if (cursor.GetPos().y >= BoxPos.y - 40.0f && cursor.GetPos().y <= BoxPos.y + 40.0f) {
 			startColor = {1.0f, 0.0f, 0.0f, 1.0f};
 			if (cursor.TriggerLeft()) {
-				isFinished_ = true;
+				if (!isHitE) {
+					isHit = true;
+				}
 			}
 		} else {
 			startColor = {1.0f, 1.0f, 1.0f, 1.0f};
@@ -47,7 +60,9 @@ void TitleScene::Update() {
 		if (cursor.GetPos().y >= endBoxPos.y - 40.0f && cursor.GetPos().y <= endBoxPos.y + 40.0f) {
 			endColor = {1.0f, 0.0f, 0.0f, 1.0f};
 			if (cursor.TriggerLeft()) {
-				isEscaped_ = true;
+				if (!isHit) {
+					isHitE = true;
+				}
 			}
 		} else {
 			endColor = {1.0f, 1.0f, 1.0f, 1.0f};
@@ -55,6 +70,15 @@ void TitleScene::Update() {
 	} else {
 		endColor = {1.0f, 1.0f, 1.0f, 1.0f};
 	}
+
+	if (isHit && !hit->IsHit()) {
+		isFinished_ = true;
+	}
+	if (isHitE && !hit->IsHit()) {
+		isEscaped_ = true;
+	}
+
+	hit->Update();
 
 	startBoxSprite->SetColor(startColor);
 	endBoxSprite->SetColor(endColor);
@@ -79,6 +103,8 @@ void TitleScene::Draw() {
 	startBoxSprite->Draw();
 
 	endBoxSprite->Draw();
+
+	hit->Draw();
 
 	cursor.Draw();
 
