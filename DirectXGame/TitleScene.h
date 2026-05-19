@@ -1,7 +1,8 @@
 #pragma once
 #include "Cursor.h"
-#include "KamataEngine.h"
 #include "Hit.h"
+#include "KamataEngine.h"
+#include "Scene.h"
 
 using namespace KamataEngine;
 
@@ -10,18 +11,16 @@ struct Box {
 	Vector4 color;
 };
 
-class TitleScene {
+class TitleScene : public Scene {
 public:
-	~TitleScene();
-
 	// 初期化
-	void Initialize();
+	void Initialize() override;
 
 	// 更新
-	void Update();
+	void Update() override;
 
 	// 描画
-	void Draw();
+	void Draw() override;
 
 	// シーン終了フラグ
 	bool IsFinished() { return isFinished_; }

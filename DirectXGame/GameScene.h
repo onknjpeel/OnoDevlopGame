@@ -2,21 +2,20 @@
 #include "Cursor.h"
 #include "Enemy.h"
 #include "KamataEngine.h"
+#include "Scene.h"
 
 using namespace KamataEngine;
 
-class GameScene {
+class GameScene : public Scene {
 public:
-	~GameScene();
-
 	// 初期化
-	void Initialize();
+	void Initialize() override;
 
 	// 更新
-	void Update();
+	void Update() override;
 
 	// 描画
-	void Draw();
+	void Draw() override;
 
 	// シーン終了フラグ
 	bool IsFinished() { return isFinished_; }

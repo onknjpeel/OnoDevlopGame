@@ -2,8 +2,6 @@
 
 using namespace MathUtility;
 
-TitleScene::~TitleScene() {}
-
 void TitleScene::Initialize() {
 	dxc_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();

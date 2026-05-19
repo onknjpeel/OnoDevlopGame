@@ -2,11 +2,6 @@
 
 using namespace MathUtility;
 
-GameScene::~GameScene() {
-	delete enemyModel;
-	delete enemy_;
-}
-
 void GameScene::Initialize() {
 	dxc_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();

@@ -6,13 +6,13 @@
 
 using namespace KamataEngine;
 
-enum Scene {
+enum SceneNum {
 	kUnknown,
 	kTitle,
 	kGame,
 };
 
-Scene scene = kUnknown;
+SceneNum scene = kUnknown;
 
 GameScene* gameScene = nullptr;
 
@@ -82,10 +82,10 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 void UpdateScene() {
 	switch (scene) {
-	case Scene::kTitle:
+	case SceneNum::kTitle:
 		titleScene->Update();
 		break;
-	case Scene::kGame:
+	case SceneNum::kGame:
 		gameScene->Update();
 		break;
 	}
@@ -93,18 +93,18 @@ void UpdateScene() {
 
 void ChangeScene() {
 	switch (scene) {
-	case Scene::kTitle:
+	case SceneNum::kTitle:
 		if (titleScene->IsFinished()) {
-			scene = Scene::kGame;
+			scene = SceneNum::kGame;
 			delete titleScene;
 			titleScene = nullptr;
 			gameScene = new GameScene();
 			gameScene->Initialize();
 		}
 		break;
-	case Scene::kGame:
+	case SceneNum::kGame:
 		if (gameScene->IsFinished()) {
-			scene = Scene::kTitle;
+			scene = SceneNum::kTitle;
 			delete gameScene;
 			gameScene = nullptr;
 			titleScene = new TitleScene();
@@ -116,10 +116,10 @@ void ChangeScene() {
 
 void DrawScene() {
 	switch (scene) {
-	case Scene::kTitle:
+	case SceneNum::kTitle:
 		titleScene->Draw();
 		break;
-	case Scene::kGame:
+	case SceneNum::kGame:
 		gameScene->Draw();
 		break;
 	}
