@@ -27,6 +27,8 @@ public:
 
 	bool IsEscaped() { return isEscaped_; }
 
+	SceneNum GetNextScene();
+
 private:
 	DirectXCommon* dxc_ = nullptr;
 	Input* input_ = nullptr;

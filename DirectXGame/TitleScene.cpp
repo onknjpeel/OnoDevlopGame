@@ -110,3 +110,13 @@ void TitleScene::Draw() {
 
 	cursor.IMGUI_POS();
 }
+
+SceneNum TitleScene::GetNextScene() {
+	if (isFinished_) {
+		return SceneNum::kGame;
+	}
+	if (isEscaped_) {
+		return SceneNum::kEnd;
+	}
+	return SceneNum::kUnknown;
+}

@@ -106,3 +106,10 @@ void GameScene::Draw() {
 	cursor.IMGUI_POS();
 	enemy_->IMGUI();
 }
+
+SceneNum GameScene::GetNextScene() {
+	if (isFinished_) {
+		return SceneNum::kTitle;
+	}
+	return SceneNum::kUnknown;
+}

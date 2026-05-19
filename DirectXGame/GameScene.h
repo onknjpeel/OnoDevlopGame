@@ -20,6 +20,8 @@ public:
 	// シーン終了フラグ
 	bool IsFinished() { return isFinished_; }
 
+	SceneNum GetNextScene();
+
 private:
 	DirectXCommon* dxc_ = nullptr;
 	Input* input_ = nullptr;
