@@ -1,6 +1,7 @@
 #pragma once
 #include "Cursor.h"
 #include "KamataEngine.h"
+#include "Hit.h"
 
 using namespace KamataEngine;
 
@@ -47,4 +48,8 @@ private:
 
 	Cursor cursor;
 	uint32_t cursorGH = TextureManager::Load("./Resources/cursor.png");
+
+	Hit* hit = nullptr;
+	bool isHit = false;
+	bool isHitE = false;
 };
