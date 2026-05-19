@@ -1,4 +1,8 @@
 #pragma once
+#include "KamataEngine.h"
+
+using namespace KamataEngine;
+
 class Particle {
 private:
 	// 初期化
@@ -11,4 +15,7 @@ private:
 	void Draw();
 
 public:
+	Model* model_ = nullptr;
+	Vector3 pos_;
+
 };
