@@ -1,28 +1,10 @@
 #include "GameScene.h"
-#include "KamataEngine.h"
-#include "TitleScene.h"
+#include "Scene.h"
+#include "SceneManager.h"
 #include <Windows.h>
 #include <d3dcompiler.h>
 
 using namespace KamataEngine;
-
-enum SceneNum {
-	kUnknown,
-	kTitle,
-	kGame,
-};
-
-SceneNum scene = kUnknown;
-
-GameScene* gameScene = nullptr;
-
-TitleScene* titleScene = nullptr;
-
-void UpdateScene();
-
-void ChangeScene();
-
-void DrawScene();
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
@@ -35,16 +17,9 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	// DirectXCommonのインスタンスの取得
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
-	titleScene = new TitleScene();
+	SceneManager sceneManager;
 
-	titleScene->Initialize();
-
-	// ゲームシーンのインスタンス生成
-	gameScene = new GameScene();
-	// ゲームシーンの初期化
-	gameScene->Initialize();
-
-	scene = kTitle;
+	sceneManager.SceneInit();
 
 	// メインループ
 	while (true) {
@@ -52,25 +27,21 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 			break;
 		}
 
-		UpdateScene();
-
-		ChangeScene();
+		sceneManager.Update();
 
 		// 描画開始
 		dxCommon->PreDraw();
 
-		DrawScene();
+		sceneManager.Draw();
 
 		// 描画終了
 		dxCommon->PostDraw();
 
-		if (scene == kTitle) {
-			if (titleScene->IsEscaped()) {
-				break;
-			}
-			if (Input::GetInstance()->TriggerKey(DIK_ESCAPE)) {
-				break;
-			}
+		if (sceneManager.Escape()) {
+			break;
+		}
+		if (Input::GetInstance()->TriggerKey(DIK_ESCAPE)) {
+			break;
 		}
 	}
 
@@ -78,49 +49,4 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	KamataEngine::Finalize();
 
 	return 0;
-}
-
-void UpdateScene() {
-	switch (scene) {
-	case SceneNum::kTitle:
-		titleScene->Update();
-		break;
-	case SceneNum::kGame:
-		gameScene->Update();
-		break;
-	}
-}
-
-void ChangeScene() {
-	switch (scene) {
-	case SceneNum::kTitle:
-		if (titleScene->IsFinished()) {
-			scene = SceneNum::kGame;
-			delete titleScene;
-			titleScene = nullptr;
-			gameScene = new GameScene();
-			gameScene->Initialize();
-		}
-		break;
-	case SceneNum::kGame:
-		if (gameScene->IsFinished()) {
-			scene = SceneNum::kTitle;
-			delete gameScene;
-			gameScene = nullptr;
-			titleScene = new TitleScene();
-			titleScene->Initialize();
-		}
-		break;
-	}
-}
-
-void DrawScene() {
-	switch (scene) {
-	case SceneNum::kTitle:
-		titleScene->Draw();
-		break;
-	case SceneNum::kGame:
-		gameScene->Draw();
-		break;
-	}
 }
