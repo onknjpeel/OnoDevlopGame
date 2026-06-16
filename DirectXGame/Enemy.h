@@ -35,7 +35,7 @@ private:
 	ObjectColor objectColor_;
 	Vector4 color;
 
-	Vector2 size_;
+	const Vector2 size_ = {20.0f, 20.0f};
 
 	bool isAlive_ = false;
 	bool isTouch_ = false;

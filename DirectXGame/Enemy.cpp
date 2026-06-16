@@ -7,7 +7,6 @@ void Enemy::Initialize(Model* model) {
 	worldTransform_.Initialize();
 	pos_ = worldTransform_.translation_;
 	objectColor_.Initialize();
-	size_ = {20.0f, 20.0f};
 }
 
 void Enemy::Update() {
