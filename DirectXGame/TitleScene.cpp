@@ -8,11 +8,17 @@ void TitleScene::Initialize() {
 	audio_ = Audio::GetInstance();
 
 	startBoxGH = TextureManager::Load("./Resources/startBox.png");
-	startBox = {{startBoxPos}, {startColor}};
+	startBox = {
+	    {640.0f, 360.0f},
+        {1.0f, 1.0f, 1.0f, 1.0f}
+    };
 	startBoxSprite = Sprite::Create(startBoxGH, startBox.pos, startBox.color, {0.5f, 0.5f}, 0, 0);
 
 	endBoxGH = TextureManager::Load("./Resources/endBox.png");
-	endBox = {{endBoxPos}, {endColor}};
+	endBox = {
+	    {640.0f, 520.0f},
+        {1.0f, 1.0f, 1.0f, 1.0f}
+    };
 	endBoxSprite = Sprite::Create(endBoxGH, endBox.pos, endBox.color, {0.5f, 0.5f}, 0, 0);
 
 	hit = new Hit();

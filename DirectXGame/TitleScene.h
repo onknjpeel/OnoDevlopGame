@@ -39,17 +39,13 @@ private:
 
 	uint32_t startBoxGH = 0u;
 	Sprite* startBoxSprite = nullptr;
-	const Vector2 startBoxPos = {};
-	Vector4 startColor = {1.0f, 1.0f, 1.0f, 1.0f};
-
 	Box startBox = {{}, {}};
+	Vector4 startColor = {};
 
 	uint32_t endBoxGH = 0u;
 	Sprite* endBoxSprite = nullptr;
-	const Vector2 endBoxPos = {};
-	Vector4 endColor = {1.0f, 1.0f, 1.0f, 1.0f};
-
 	Box endBox = {{}, {}};
+	Vector4 endColor = {};
 
 	Cursor cursor;
 	uint32_t cursorGH = TextureManager::Load("./Resources/cursor.png");
